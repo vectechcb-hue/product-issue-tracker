@@ -2,6 +2,8 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
+    // 本 APP 的議題照片：允許直接由手機 PWA 上傳、讀取與刪除。
+    // 注意：這裡的規則必須在 Firebase Console → Storage → Rules → 發布後才會生效。
     match /product-issue-tracker-01/issues/{issueId}/{fileName} {
       allow read, write: if true;
     }
