@@ -1,0 +1,14 @@
+{
+  "name": "產品討論議題履歷表",
+  "short_name": "產品議題履歷",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#2563eb",
+  "lang": "zh-TW",
+  "description": "VECTECH 產品討論議題履歷表手機 PWA",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
