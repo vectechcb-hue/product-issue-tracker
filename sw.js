@@ -1,5 +1,6 @@
-const CACHE='product-issue-tracker-v6';
+const CACHE='product-issue-tracker-v7';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icon.svg'];
+const EXPORT_SCRIPT='./export-with-images.js';
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)))});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const u=new URL(event.request.url);if(u.origin!==location.origin)return;if(event.request.mode==='navigate'){event.respondWith(fetch(event.request).catch(()=>caches.match('./index.html')));return}event.respondWith(fetch(event.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(event.request,r.clone()));return r}).catch(()=>caches.match(event.request)))});
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const u=new URL(event.request.url);if(u.origin!==location.origin)return;if(event.request.mode==='navigate'){event.respondWith(fetch(event.request).then(async r=>{if(!r.ok)return r;const html=await r.text();const patched=html.includes('export-with-images.js')?html:html.replace('</body>',`<script type="module" src="${EXPORT_SCRIPT}"></script></body>`);const h=new Headers(r.headers);h.delete('content-length');return new Response(patched,{status:r.status,statusText:r.statusText,headers:h})}).catch(()=>caches.match('./index.html')));return}event.respondWith(fetch(event.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(event.request,r.clone()));return r}).catch(()=>caches.match(event.request)))});
