@@ -1,5 +1,5 @@
-const CACHE='product-issue-tracker-v14';
-const SHELL=['./','./index.html','./app.html','./app.js','./manifest.webmanifest','./icon.svg','./converter.html','./converter.webmanifest'];
+const CACHE='product-issue-tracker-v13';
+const SHELL=['./','./index.html','./app.html','./app.js','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;if(new URL(e.request.url).origin!==location.origin)return;e.respondWith(fetch(e.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(e.request,r.clone()));return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./app.html'))))});
