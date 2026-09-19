@@ -1,10 +1,14 @@
-# 產品討論議題履歷表
+# 承邦一鍵轉檔 App
 
-VECTECH 產品討論議題履歷表手機 PWA。
+手機版 PWA，直接呼叫 Render 轉檔 API。
+
+## 手機使用
+開啟 GitHub Pages 的 `converter.html`，Safari／Chrome 可使用「加入主畫面」，即可像 App 一樣從手機桌面開啟。
 
 ## 功能
-- Firebase 雲端同步
-- 新增、編輯、刪除議題
-- 編輯密碼保護
-- Excel 匯入／匯出
-- 手機加入主畫面
+- PPTX / PDF 上傳
+- Logo PNG / JPG 上傳
+- 呼叫 `https://my-pptx-bot-lw8t.onrender.com/convert`
+- iPhone 使用原生分享／儲存
+- Android 使用下載
+- 不影響原有產品議題履歷系統
