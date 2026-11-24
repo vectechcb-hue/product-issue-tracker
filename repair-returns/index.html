@@ -13,6 +13,7 @@
 <section class="card"><h3>從舊系統移入 Word</h3><p>可一次選多個 .doc 或 .docx。匯入前可核對每份檔案的品項、照片和金額。舊版 Word 沒有記載的歸還狀態會標成「待確認」。</p><label class="btn primary" for="wordFiles">選取 Word 檔</label><input class="file" type="file" id="wordFiles" accept=".doc,.docx" multiple><button id="pasteBtn">貼上 Word 表格</button></section>
 <section class="card"><h3>完整備份</h3><p>這台裝置會自動儲存草稿。「匯出完整備份」可保留草稿、歷史紀錄、照片、歸還狀態與日期。換機或移除 App 前，請將備份存入「檔案」或 iCloud Drive。</p>
 <div class="actions"><button class="primary" id="exportBackup">匯出完整備份</button><label class="btn" for="backupFile">匯入完整備份</label><input class="file" type="file" id="backupFile" accept=".json,application/json"></div><p id="inventory"></p></section>
+<details class="card"><summary>移轉舊系統的歸還日期與歷史時間</summary><p>若還能編輯舊系統的原始專案，可在原本的裝置與帳號執行唯讀匯出元件。請先保留原始 App.tsx，等草稿儲存完成，再暫時以此元件開啟同一個專案。核對筆數並下載 JSON 後，可恢復原程式。</p><a class="btn" href="./migration/ReadOnlyExport.tsx" download="ReadOnlyExport.tsx">下載原專案用的匯出元件</a></details>
 <section class="card"><h3>上一份操作前備份</h3><p>變更歷史紀錄、匯入或刪除前，會保留當時的資料，可再合併回來。</p><button id="recover">檢視可還原的資料</button></section>
 <details class="card"><summary>在 iPhone 安裝・版本 1.0.0</summary><p>請用 Safari 開啟，點選「分享」→「加入主畫面」→「加入」。請先安裝，再從桌面圖示開啟並匯入資料。每台裝置各自儲存，可透過完整備份移轉。</p></details></section></main>
 <nav aria-label="主要功能"><div class="wrap tabs"><button data-tab="editor" aria-current="page"><span>▤</span>明細</button><button data-tab="history"><span>◷</span>歷史紀錄</button><button data-tab="transfer"><span>⇅</span>匯入與備份</button></div></nav>
