@@ -40,10 +40,12 @@ const Word = (() => {
       let image=img?.getAttribute('src')||'';
       if(image && !picture(image)) {missing++;image='';}
       const status=textOf(c[4]);let isReturned=null;
-      if(/已返回|已歸還|已归还/.test(status)) isReturned=true;
+      const factory=/[歸归][還还]工[廠厂]/.test(status);
+      if(factory)isReturned=false;
+      else if(/已返回|已歸還|已归还/.test(status)) isReturned=true;
       else if(/未返回|返修中|未歸還/.test(status))isReturned=false;
       if(isReturned===null)unknown++;
-      result.items.push({id:String(result.items.length+1),details:textOf(c[2]),qtyPrice:textOf(c[3]),image,isReturned,returnedDate:textOf(c[5])});
+      result.items.push({id:String(result.items.length+1),details:textOf(c[2]),qtyPrice:textOf(c[3]),image,isReturned,...(factory?{returnDestination:'factory'}:{}),returnedDate:textOf(c[5])});
     }
     if(!matched && !result.items.length)throw Error('無法辨識表格，請選用返修系統匯出的 Word 明細');
     if(!result.items.length && !result.totalAmount && !result.headerText)throw Error('表格內沒有可匯入的內容');
@@ -110,7 +112,7 @@ const Word = (() => {
   }
   function render(r) {
     return '<!doctype html><html><head><meta charset="utf-8"><title>返修品明細</title></head><body><p>'+line(r.headerText)+'</p><table border="1" cellspacing="0" cellpadding="6"><tr>'+['序號','產品照片','型號／品名／故障原因','數量／金額','歸還狀態','歸還日期'].map(v=>'<th>'+v+'</th>').join('')+'</tr>'+
-    r.items.map((i,n)=>'<tr><td>'+(n+1)+'</td><td>'+(picture(i.image)?'<img width="160" src="'+esc(i.image)+'">':'')+'</td><td>'+line(i.details)+'</td><td>'+line(i.qtyPrice)+'</td><td>'+(i.isReturned===true?'已返回公司':i.isReturned===false?'返修中':'待確認')+'</td><td>'+line(i.returnedDate)+'</td></tr>').join('')+
+    r.items.map((i,n)=>'<tr><td>'+(n+1)+'</td><td>'+(picture(i.image)?'<img width="160" src="'+esc(i.image)+'">':'')+'</td><td>'+line(i.details)+'</td><td>'+line(i.qtyPrice)+'</td><td>'+Repair.status(i)+'</td><td>'+line(i.returnedDate)+'</td></tr>').join('')+
     '<tr><td colspan="2"></td><td colspan="4">合計金額 '+line(r.totalAmount)+'</td></tr></table></body></html>';
   }
   return {parse,fromHTML,render,esc,picture};

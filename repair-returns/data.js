@@ -102,5 +102,9 @@ const Repair = (() => {
       };
     });
   }
-  return {format,empty,id,copy,canonical,equal,digest,counts,validate,backup,unpack,merge,append,isBlank,asDraft,asReport,open,read,write};
+  function status(item) {
+    if (item.returnDestination==='factory') return '歸還工廠';
+    return item.isReturned===true?'已返回公司':item.isReturned===false?'返修中':'待確認';
+  }
+  return {status,format,empty,id,copy,canonical,equal,digest,counts,validate,backup,unpack,merge,append,isBlank,asDraft,asReport,open,read,write};
 })();

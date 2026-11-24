@@ -4,9 +4,9 @@
 <header><div class="wrap head"><div class="brand"><img src="./icon-180.png" alt="" width="38" height="38"><div><span class="eyebrow">承邦有限公司</span><h1>返修品明細</h1></div></div><div id="saved" role="status">正在開啟</div></div></header>
 <div class="wrap" id="notice" role="alert" hidden></div>
 <main class="wrap"><section id="editor"><div class="sectionhead"><div><div class="overline">送修管理</div><h2>目前明細</h2></div><button class="primary" id="saveRecord">存為紀錄</button></div>
-<p id="editInfo" hidden></p>
+<div id="summary" aria-live="polite"></div><p id="editInfo" hidden></p>
 <section class="card"><label for="heading">表頭資訊</label><textarea id="heading" rows="2" placeholder="公司名稱、送修日期與說明"></textarea>
-<div class="linehead"><h3>品項</h3><button id="add" class="soft">＋ 新增品項</button></div><p id="summary"></p><div id="items"></div><div class="total"><label for="total">合計金額</label><input id="total" placeholder="例如 USD 100.00"></div></section>
+<div class="linehead"><h3>品項</h3><button id="add" class="soft">＋ 新增品項</button></div><div id="items"></div><div class="total"><label for="total">合計金額</label><input id="total" placeholder="例如 USD 100.00"></div></section>
 <div class="actions"><button id="asNew">另存新紀錄</button><button id="newDraft">開新明細</button><button id="exportWord">匯出這張 Word</button></div></section>
 <section id="history" hidden><div class="sectionhead"><div><div class="overline">送修管理</div><h2>歷史紀錄</h2></div><span id="historyCount"></span></div><label for="search">搜尋紀錄</label><input id="search" type="search" placeholder="表頭、日期、型號或檔名"><div id="historyList"></div></section>
 <section id="transfer" hidden><div class="sectionhead"><div><div class="overline">資料管理</div><h2>匯入與備份</h2></div></div>
@@ -15,7 +15,7 @@
 <div class="actions"><button class="primary" id="exportBackup">匯出完整備份</button><label class="btn" for="backupFile">匯入完整備份</label><input class="file" type="file" id="backupFile" accept=".json,application/json"></div><p id="inventory"></p></section>
 <details class="card"><summary>移轉舊系統的歸還日期與歷史時間</summary><p>若還能編輯舊系統的原始專案，可在原本的裝置與帳號執行唯讀匯出元件。請先保留原始 App.tsx，等草稿儲存完成，再暫時以此元件開啟同一個專案。核對筆數並下載 JSON 後，可恢復原程式。</p><a class="btn" href="./migration/ReadOnlyExport.tsx" download="ReadOnlyExport.tsx">下載原專案用的匯出元件</a></details>
 <section class="card"><h3>上一份操作前備份</h3><p>變更歷史紀錄、匯入或刪除前，會保留當時的資料，可再合併回來。</p><button id="recover">檢視可還原的資料</button></section>
-<details class="card"><summary>在 iPhone 安裝・版本 1.0.0</summary><p>請用 Safari 開啟，點選「分享」→「加入主畫面」→「加入」。請先安裝，再從桌面圖示開啟並匯入資料。每台裝置各自儲存，可透過完整備份移轉。</p></details></section></main>
+<details class="card"><summary>在 iPhone 安裝・版本 1.1.0</summary><p>請用 Safari 開啟，點選「分享」→「加入主畫面」→「加入」。請先安裝，再從桌面圖示開啟並匯入資料。每台裝置各自儲存，可透過完整備份移轉。</p></details></section></main>
 <nav aria-label="主要功能"><div class="wrap tabs"><button data-tab="editor" aria-current="page"><span>▤</span>明細</button><button data-tab="history"><span>◷</span>歷史紀錄</button><button data-tab="transfer"><span>⇅</span>匯入與備份</button></div></nav>
 <dialog id="dialog"><div class="dialoghead"><h3 id="dialogTitle"></h3><button id="closeDialog" aria-label="關閉">×</button></div><div id="dialogContent"></div><div class="actions" id="dialogActions"></div></dialog>
 <div id="toast" role="status" hidden></div></body></html>
